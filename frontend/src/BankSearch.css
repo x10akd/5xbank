@@ -1,0 +1,15 @@
+.branch-info {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.branch-info h2 {
+  margin-top: 0;
+}
+
+.branch-info p {
+  margin: 5px 0;
+}
