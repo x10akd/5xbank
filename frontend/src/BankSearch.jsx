@@ -16,10 +16,12 @@ const BankSearch = () => {
   const navigate = useNavigate();
   const { bankCode: paramBankCode, branchCode, branchName } = useParams();
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const fetchBanks = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/banks/");
+        const response = await axios.get(`${API_URL}/banks/`);
         setBanks(
           response.data.map((bank) => ({
             value: bank.code,
@@ -39,7 +41,7 @@ const BankSearch = () => {
       if (paramBankCode) {
         try {
           const response = await axios.get(
-            `http://127.0.0.1:5000/${paramBankCode}/branches/`
+            `${API_URL}/${paramBankCode}/branches/`
           );
           setBranches(
             response.data.branches.map((branch) => ({
@@ -62,7 +64,7 @@ const BankSearch = () => {
       if (paramBankCode && branchCode && branchName) {
         try {
           const response = await axios.get(
-            `http://127.0.0.1:5000/${paramBankCode}/${branchCode}/${encodeURIComponent(
+            `${API_URL}/${paramBankCode}/${branchCode}/${encodeURIComponent(
               branchName
             )}.html`
           );
@@ -83,7 +85,7 @@ const BankSearch = () => {
     if (selectedBankCode) {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:5000/${selectedBankCode}/branches/`
+          `${API_URL}/${selectedBankCode}/branches/`
         );
         setBranches(
           response.data.branches.map((branch) => ({
@@ -108,7 +110,7 @@ const BankSearch = () => {
     if (branchCode) {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:5000/${bankCode}/${branchCode}/${encodeURIComponent(
+          `${API_URL}/${bankCode}/${branchCode}/${encodeURIComponent(
             branchName
           )}.html`
         );

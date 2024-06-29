@@ -13,6 +13,7 @@ flask-cors = "^4.0.1"
 flask-marshmallow = "^1.2.1"
 marshmallow = "^3.21.3"
 pandas = "^2.2.2"
+python-dotenv = "^1.0.1"
 
 
 [build-system]
