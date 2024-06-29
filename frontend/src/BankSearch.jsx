@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 const BankSearch = () => {
@@ -8,6 +9,7 @@ const BankSearch = () => {
   const [bankCode, setBankCode] = useState("");
   const [branches, setBranches] = useState([]);
   const [selectedBranch, setSelectedBranch] = useState(null);
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -65,7 +67,7 @@ const BankSearch = () => {
           )}.html`
         );
         setSelectedBranch(response.data);
-        history.push(
+        navigate(
           `/${bankCode}/${branchCode}/${encodeURIComponent(branchName)}.html`
         );
       } catch (error) {
