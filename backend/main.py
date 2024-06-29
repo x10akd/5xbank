@@ -9,9 +9,14 @@ def import_csv_command():
     import_data('./data.csv')  # 將這裡的路徑替換為你的 CSV 檔案路徑
     print("CSV data has been imported.")
 
+@app.route("/banks/")
+def get_banks():
+    banks = Bank.query.all()
+    banks_data = [{"name": bank.name, "code": bank.code} for bank in banks]
+    return jsonify(banks_data)
 
 @app.route("/<string:bank_code>/branches/")
-def bank(bank_code):
+def get_bank_branches(bank_code):
     bank = Bank.query.filter_by(code=bank_code).first()
     if not bank:
         return jsonify({"error": "Bank not found"}), 404
@@ -27,7 +32,7 @@ def bank(bank_code):
     return jsonify({"bank": bank.name, "branches": branches_data})
 
 
-@app.route("/<string:bank_code>/<string:branch_code>/<string:branch_name>.html", methods=['GET'])
+@app.route("/<string:bank_code>/<string:branch_code>/<string:branch_name>.html")
 def get_branch(bank_code, branch_code, branch_name):
     branch_name = unquote(branch_name)
     bank = Bank.query.filter_by(code=bank_code).first()
@@ -56,4 +61,4 @@ if __name__ == "__main__":
 
     app.run(debug=True)
 
-# 223/2230034/澎湖第二信用合作社-陽明分社.html
+
