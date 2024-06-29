@@ -3,13 +3,12 @@ import Select from "react-select";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
-
-
 const BankSearch = () => {
   const [banks, setBanks] = useState([]);
   const [bankCode, setBankCode] = useState("");
   const [branches, setBranches] = useState([]);
   const [selectedBranch, setSelectedBranch] = useState(null);
+
   const [copyButtonText, setCopyButtonText] = useState("複製此頁面連結");
   const [copyCodeText, setCopyCodeText] = useState("複製代碼");
 
@@ -143,10 +142,7 @@ const BankSearch = () => {
   };
 
   const handleReset = () => {
-    setBankCode("");
-    setBranches([]);
-    setSelectedBranch(null);
-    navigate("/");
+    window.location.href = "/";
   };
 
   return (
@@ -156,6 +152,7 @@ const BankSearch = () => {
         <label>銀行名稱</label>
         <Select
           options={banks}
+          value={banks.find((bank) => bank.value === bankCode)}
           onChange={handleBankSelect}
           placeholder="請輸入關鍵字或銀行代碼..."
           isClearable
@@ -180,7 +177,8 @@ const BankSearch = () => {
           <div className="branch-info">
             <h2>{selectedBranch.name}</h2>
             <p>
-              分行代碼：{selectedBranch.branch_code} <button onClick={handleCopyCode}>{copyCodeText}</button>
+              分行代碼：{selectedBranch.branch_code}
+              <button onClick={handleCopyCode}>{copyCodeText}</button>
             </p>
             <p>地址：{selectedBranch.address}</p>
             <p>電話：{selectedBranch.tel}</p>
