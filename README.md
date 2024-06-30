@@ -2,7 +2,7 @@
 
 ## 點擊進入網站 ☟
 
-**https://#/**
+**[連結](https://fivexbank.zeabur.app/)**
 
 ---
 ## 專案特點
@@ -13,4 +13,4 @@
 * 後端：Python, Flask
 * 資料庫：SQLlite3
 * 版本控制：Git
-* 部署：Fly.io
+* 部署：Zeabur
